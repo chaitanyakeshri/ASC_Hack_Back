@@ -12,8 +12,10 @@ from rest_framework import request
 """ Data to be fetched once a day when internet access  is given"""
 
 @api_view(["GET"])
-def get_qr(request , date_time):
-    data =  Event.objects.filter(date = date_time )
+def fetch_data(request ):
+    date = request.data['date']
+    event = request.data['token']
+    data =  Event.objects.filter(date = date, token = event)
     serializer= EventSerializer(data, many = True)
     return Response(serializer.data)
 
@@ -28,7 +30,7 @@ def scanner_login(request):
         return Response({"message": "scanner does not exist"}, status=status.HTTP_404_NOT_FOUND)
     if  scanner.password != password:
         return Response({"message": "invalid login"}, status=status.HTTP_401_UNAUTHORIZED)
-    serializer = ScannerSerializer(scanner)
+    serializer = EventSerializer(scanner)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 """

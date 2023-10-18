@@ -24,5 +24,5 @@ urlpatterns = [
    # path('entry/<str:login_id>', views.entry_check),
     #path('exit/<str:login_id>', views.exit_check),
    # path('event/<str:token>/<str:login_id>', views.event_check),
-    path('fetch_data/<str:date_time>/', views.get_qr),
+    path('fetch_data/<str:date_time>/', views.fetch_data),
 ]
