@@ -14,7 +14,7 @@ class Scanner(models.Model):
         return str(self.event+" "+str(self.gate_number))
     
 class Event(models.Model):
-    token=models.IntegerField(max_length=20,primary_key=True)
+    token=models.IntegerField(primary_key=True)
     name=models.CharField(max_length=200, null=False, blank=False)
     location=models.CharField(max_length=200)
     date=models.DateField(null=False)
