@@ -12,10 +12,8 @@ from rest_framework import request
 """ Data to be fetched once a day when internet access  is given"""
 
 @api_view(["GET"])
-def fetch_data(request):
-    date = request.data['date']
-    event = request.data['token']
-    data =  Event.objects.filter(date = date, token = event)
+def fetch_data(request,token ,date):
+    data =  Event.objects.filter(date = date, token = token)
     serializer= EventSerializer(data, many = True)
     return Response(serializer.data)
 
