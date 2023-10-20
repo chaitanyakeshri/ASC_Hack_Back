@@ -10,7 +10,7 @@ class EventSerializer(serializers.ModelSerializer):
 class ScannerSerializer(serializers.ModelSerializer):
     class Meta:
         model=Scanner
-        fields="__all__"
+        fields=["event"]
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

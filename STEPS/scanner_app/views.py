@@ -12,7 +12,7 @@ from rest_framework import request
 """ Data to be fetched once a day when internet access  is given"""
 
 @api_view(["GET"])
-def fetch_data(request,token ,date):
+def fetch_data(request,token,date):
     data =  Event.objects.filter(date = date, token = token)
     serializer= EventSerializer(data, many = True)
     return Response(serializer.data)
@@ -28,7 +28,8 @@ def scanner_login(request):
         return Response({"message": "scanner does not exist"}, status=status.HTTP_404_NOT_FOUND)
     if  scanner.password != password:
         return Response({"message": "invalid login"}, status=status.HTTP_401_UNAUTHORIZED)
-    return Response(status=status.HTTP_200_OK)
+    serializer = ScannerSerializer(scanner)
+    return Response(serializer.data ,status=status.HTTP_200_OK)
 
 """
 @api_view(["PUT"])
