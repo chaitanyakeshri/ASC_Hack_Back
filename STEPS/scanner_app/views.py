@@ -28,8 +28,7 @@ def scanner_login(request):
         return Response({"message": "scanner does not exist"}, status=status.HTTP_404_NOT_FOUND)
     if  scanner.password != password:
         return Response({"message": "invalid login"}, status=status.HTTP_401_UNAUTHORIZED)
-    serializer = EventSerializer(scanner)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_200_OK)
 
 """
 @api_view(["PUT"])
